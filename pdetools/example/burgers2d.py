@@ -91,7 +91,7 @@ class BurgersSpect2d(nn.Module, TimeStepper):
         return self.predict(inputs, T, **kw)
 
 
-def test_Burgers2d(viscosity=0.1, max_dt=1e-5):
+def test_Burgers2d(viscosity=0.001, max_dt=1e-5):
     import aTEAM.pdetools as pdetools
     import aTEAM.pdetools.example.burgers2d as burgers2d
     import torch
@@ -160,6 +160,8 @@ def test_Burgers2d(viscosity=0.1, max_dt=1e-5):
             x0 = burgers0.predict(x0, T=T)
             x1 = burgers1.predict(x1, T=T)
         stopt = time.time()
+        print('x0: ', x0[1][0][5][28])
+        print('x1: ', x1[1][0][5][28])
         print('elapsed-time:{:.1f}'.format(stopt-startt)+
                 ', speedrange:{:.0f}'.format(speedrange)+
                 ', relsolutiondiff:{:.4f}'.format(relsolutiondiff)
