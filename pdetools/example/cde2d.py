@@ -203,8 +203,8 @@ def test_CDE():
         a1.clear()
         xplot0 = x0 if batch_size == 1 else x0[0]
         xplot1 = x1 if batch_size == 1 else x1[0]
-        b0 = a0.imshow(xplot0, cmap='jet')
-        b1 = a1.imshow(xplot1, cmap='jet')
+        b0 = a0.imshow(xplot0.data.cpu().numpy()[::-1], cmap='jet')
+        b1 = a1.imshow(xplot1.data.cpu().numpy()[::-1], cmap='jet')
         a0.set_title('t={:.1e},max={:.2f},min={:.2f}'.format(i*T,x0.max(),x0.min()))
         a1.set_title('t={:.1e},max={:.2f},min={:.2f}'.format(i*T,x1.max(),x1.min()))
         if i > 1:
